@@ -129,6 +129,14 @@ public class Controlador {
 	}
 	
 	/*
+	 * Elimina una o varias películas
+	 * @param ID Arreglo con los IDs de las películas a eliminar.
+	 */
+	public void eliminarPelicula(String[] ID) {
+		bosque.eliminarPelicula(ID);
+	}
+	
+	/*
 	 * Retorna un iterador con las películas de la tienda
 	 * @return Iterador de las películas
 	 */
