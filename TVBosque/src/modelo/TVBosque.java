@@ -73,6 +73,22 @@ public class TVBosque {
 		return lis.darElementos();
 	}
 	
+	public Iterator<Pelicula> buscarPorTitulo(String titulo) 
+	{
+		Iterator<Pelicula> it = darPeliculas();
+		ListaSimple<Pelicula> listaTitulo = new ListaSimple<Pelicula>();
+		while (it.hasNext()) 
+		{
+			Pelicula actual = it.next();
+			if (actual.getTitulo().contains(titulo)) 
+			{
+				listaTitulo.agregar(actual);
+			}
+		}
+
+		return listaTitulo.darElementos();
+	} 
+	
 	public Iterator<Pelicula> buscarPorGenero(String genero) 
 	{
 		Iterator<Pelicula> it = darPeliculas();
@@ -87,6 +103,19 @@ public class TVBosque {
 		}
 
 		return listaGenero.darElementos();
+	} 
+	
+	public void eliminarPelicula(String titulo) 
+	{
+		Iterator<Pelicula> it = darPeliculas();
+		while (it.hasNext()) 
+		{
+			Pelicula actual = it.next();
+			if (actual.getTitulo().equals(titulo)) 
+			{
+				lista.eliminar(actual);
+			}
+		}
 	} 
 
 	public Iterator<Pelicula> darPeliculas() {
