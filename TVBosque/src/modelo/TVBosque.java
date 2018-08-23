@@ -145,6 +145,7 @@ public class TVBosque {
 		return lis;
 	}
 
+	
 	public ListaSimple<Pelicula> buscarPorGenero(String genero) {
 		Iterator<Pelicula> it = darPeliculas();
 		ListaSimple<Pelicula> listaGenero = new ListaSimple<Pelicula>();
