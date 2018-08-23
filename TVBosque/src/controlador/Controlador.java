@@ -14,7 +14,7 @@ public class Controlador {
     //-----------------------------------------------------------------
 
 	/*
-	 * Tienda de pelÌculas
+	 * Tienda de pel√≠culas
 	 */
 	private TVBosque bosque;
 	
@@ -29,7 +29,7 @@ public class Controlador {
 
 	/*
 	 * Crea un nuevo controlador.
-	 * <b>post: </b>Crea las instancias de las clases TVBosque y AdministradorIO y carga todas las pelÌculas al sistema
+	 * <b>post: </b>Crea las instancias de las clases TVBosque y AdministradorIO y carga todas las pel√≠culas al sistema
 	 */
 	public Controlador() {
 		bosque = new TVBosque();
@@ -46,32 +46,32 @@ public class Controlador {
 	}
 	
 	// -----------------------------------------------------------------
-    // MÈtodos
+    // M√©todos
     // -----------------------------------------------------------------
 	
 	/*
-	 * Carga todas las pelÌculas del archivo en la lista enlazada. <br>
-	 * <b>post: </b>Se guardan todas las pelÌculas con sus datos.
-	 * @param titulo TÌtulo de la pelÌcula. titulo != null && titulo != "".
-	 * @param estudio Estudio de la pelÌcula. estudio != null && estudio != "".
-	 * @param version VersiÛn de la pelÌcula. version != null && version != "".
-	 * @param estado Estado de la pelÌcula. estado != null && estado != "".
-	 * @param precio Precio de la pelÌcula. precio >= 0.
-	 * @param clasificacion ClasificaciÛn de la pelÌcula. clasificacion != null && clasificacion != "".
-	 * @param anio AÒo de la pelÌcula. anio != null && anio != "".
-	 * @param genero GÈnero de la pelÌcula. genero != null && genero != "".
-	 * @param fecha Fecha de la pelÌcula. fecha != null && genero != "".
-	 * @param ID ID de la pelÌcula. ID != null && ID != "".
+	 * Carga todas las pel√≠culas del archivo en la lista enlazada. <br>
+	 * <b>post: </b>Se guardan todas las pel√≠culas con sus datos.
+	 * @param titulo T√≠tulo de la pel√≠cula. titulo != null && titulo != "".
+	 * @param estudio Estudio de la pel√≠cula. estudio != null && estudio != "".
+	 * @param version Versi√≥n de la pel√≠cula. version != null && version != "".
+	 * @param estado Estado de la pel√≠cula. estado != null && estado != "".
+	 * @param precio Precio de la pel√≠cula. precio >= 0.
+	 * @param clasificacion Clasificaci√≥n de la pel√≠cula. clasificacion != null && clasificacion != "".
+	 * @param anio A√±o de la pel√≠cula. anio != null && anio != "".
+	 * @param genero G√©nero de la pel√≠cula. genero != null && genero != "".
+	 * @param fecha Fecha de la pel√≠cula. fecha != null && genero != "".
+	 * @param ID ID de la pel√≠cula. ID != null && ID != "".
 	 */
 	public void cargarPelicula(String titulo, String estudio, String version, String estado, int precio, String clasificacion, String anio, String genero, String fecha, String ID) {
 		bosque.cargar(titulo, estudio, version, estado, precio, clasificacion, anio, genero, fecha, ID);
 	}
 	
 	/*
-	 * Edita una pelÌcula seg˙n peticiÛn del usuario. <br>
-	 * <b>post: </b>Se le asignan nuevos datos a la pelÌcula deseada.
-	 * @param ID ID de la pelÌcula. ID != null && ID != "".
-	 * @param editada PelÌcula editada por el usuario. editada != null.
+	 * Edita una pel√≠cula seg√∫n petici√≥n del usuario. <br>
+	 * <b>post: </b>Se le asignan nuevos datos a la pel√≠cula deseada.
+	 * @param ID ID de la pel√≠cula. ID != null && ID != "".
+	 * @param editada Pel√≠cula editada por el usuario. editada != null.
 	 */
 	public void editar(String ID, Pelicula editada) {
 		try {
@@ -83,10 +83,10 @@ public class Controlador {
 	}
 	
 	/*
-	 * Busca pelÌculas seg˙n su perÌodo anual de debut y las agrega a una lista enlazada. <br>
-	 * @param anio AÒo de la pelÌcula. anio != null && anio != "".
-	 * @return Iterador de la lista con las pelÌculas buscadas.
-	 * @throws Exception si no se encuentran pelÌculas.
+	 * Busca pel√≠culas seg√∫n su per√≠odo anual de debut y las agrega a una lista enlazada. <br>
+	 * @param anio A√±o de la pel√≠cula. anio != null && anio != "".
+	 * @return Iterador de la lista con las pel√≠culas buscadas.
+	 * @throws Exception si no se encuentran pel√≠culas.
 	 */
 	public ListaSimple<Pelicula> buscarPeriodoDebut(String anio) {
 		ListaSimple<Pelicula> it = null;
@@ -100,43 +100,61 @@ public class Controlador {
 		return it;
 	}
 	
+	/*
+	 * Retorna la lista de las pel√≠culas de un g√©nero espec√≠fico
+	 * @param genero. genero != null && genero != "".
+	 * @return Lista de las pel√≠culas de un g√©nero espec√≠fico.
+	 */
 	public ListaSimple<Pelicula> buscarPorGenero(String genero){
 		return bosque.buscarPorGenero(genero);
 	}
 	
+	/*
+	 * Agrega una pel√≠cula con los par√°metros dados
+	 * @param titulo. titulo != null && titulo != "".
+	 * @param estudio. estudio != null && estudio != "".
+	 * @param version. version != null && version != "".
+	 * @param estado. estado != null && estado != "".
+	 * @param precio. precio != 0.
+	 * @param clasificacion. clasificacion != null && clasificacion != "".
+	 * @param anio. anio != null && anio != "".
+	 * @param genero. genero != null && genero != "".
+	 * @param fecha. fecha != null && fecha != "".
+	 * @param ID. ID != null && ID != "".
+	 * @return valor de verdad de si se realizo la agregacion.
+	 */
 	public boolean agregar(String titulo, String estudio, String version, String estado, int precio, String clasificacion,
 			String anio, String genero, String fecha, String ID) {
 		return bosque.agregar(titulo, estudio, version, estado, precio, clasificacion, anio, genero, fecha, ID);
 	}
 	
 	/*
-	 * Retorna un iterador con las pelÌculas de la tienda
-	 * @return Iterador de las pelÌculas
+	 * Retorna un iterador con las pel√≠culas de la tienda
+	 * @return Iterador de las pel√≠culas
 	 */
 	public Iterator<Pelicula> darPeliculas() {
 		return bosque.darPeliculas();
 	}
 	/**
-	 * Muestra la lista de las pelÌculas que cumplen una versiÛn dada.
+	 * Muestra la lista de las pel√≠culas que cumplen una versi√≥n dada.
 	 * @param version. version != null && version != "".
-	 * @return Lista de las pelÌculas que cumplen la versiÛn dada.
+	 * @return Lista de las pel√≠culas que cumplen la versi√≥n dada.
 	 */
 	public ListaSimple<Pelicula> buscarPorVersiones(String version){
 		return bosque.buscarPorVersion(version);
 	}
 	
 	/**
-	 * Muestra la lista de las pelÌculas que cumplen una clasificaciÛn especÌfica.
-	 * @param ClasificaciÛn. clasificacion != null && clasificacion != "".
-	 * @return Lista de las pelÌculas que cumplen la clasificaciÛn dada.
-	 */
-
-	
+	 * Muestra la lista de las pel√≠culas que cumplen una clasificaci√≥n espec√≠fica.
+	 * @param Clasificaci√≥n. clasificacion != null && clasificacion != "".
+	 * @return Lista de las pel√≠culas que cumplen la clasificaci√≥n dada.
+	 */	
 	public ListaSimple<Pelicula> buscarPorClasificaciones(String clasificacion){
 		return bosque.buscarPorClasificacion(clasificacion);
 	}
+	
 	/*
-	 * Guarda los cambios de las pelÌculas en su mismo archivo
+	 * Guarda los cambios de las pel√≠culas en su mismo archivo
 	 * @throws Exception si ocurre un error con el archivo
 	 */
 	public void guardar() {
@@ -148,9 +166,9 @@ public class Controlador {
 	}
 	
 	/**
-	 * Devuelve una lista con las pelÌculas m·s costosas, que cumplen por lo menos con un gÈnero dado.
+	 * Devuelve una lista con las pel√≠culas m√°s costosas, que cumplen por lo menos con un g√©nero dado.
 	 * @param generos. generos != null.
-	 * @return Lista con las pelÌculas m·s costosas, que cumplen por lo menos con un gÈnero dado.
+	 * @return Lista con las pel√≠culas m√°s costosas, que cumplen por lo menos con un g√©nero dado.
 	 */
 	public ListaSimple<Pelicula> masCostosos(String[] generos) {
 		return bosque.masCostosos(generos);
