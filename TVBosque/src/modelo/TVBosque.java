@@ -248,19 +248,16 @@ public class TVBosque {
 		return listaVersiones;
 	}
 	
-	
-	public void eliminarPelicula(String titulo) 
-	{
-		Iterator<Pelicula> it = darPeliculas();
-		while (it.hasNext()) 
-		{
-			Pelicula actual = it.next();
-			if (actual.getTitulo().equals(titulo)) 
-			{
-				lista.eliminado(actual);
-			}
+	/*
+	 * Elimina una o varias películas
+	 * @param ID Arreglo con los IDs de las películas a eliminar.
+	 */
+	public void eliminarPelicula(String[] ID) {
+		for (int i = 0; i < ID.length; i++) {
+			Pelicula eliminar = buscarPorID(ID[i]);
+			lista.eliminado(eliminar);
 		}
-	} 
+	}
 	
 	/*
 	 * Agrega una película con los parámetros dados
