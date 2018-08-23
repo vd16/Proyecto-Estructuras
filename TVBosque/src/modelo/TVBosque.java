@@ -124,7 +124,7 @@ public class TVBosque {
 	 * 
 	 * @throws Exception si no se encuentran películas.
 	 */
-	public Iterator<Pelicula> buscarPeriodoDebut(String anio) throws Exception {
+	public ListaSimple<Pelicula> buscarPeriodoDebut(String anio) throws Exception {
 		Iterator<Pelicula> it = darPeliculas();
 		ListaSimple<Pelicula> lis = new ListaSimple<>();
 		boolean agregado = false;
@@ -142,10 +142,10 @@ public class TVBosque {
 			throw new Exception("No se pudo encontrar elementos con ese año");
 		}
 
-		return lis.darElementos();
+		return lis;
 	}
 
-	public Iterator<Pelicula> buscarPorGenero(String genero) {
+	public ListaSimple<Pelicula> buscarPorGenero(String genero) {
 		Iterator<Pelicula> it = darPeliculas();
 		ListaSimple<Pelicula> listaGenero = new ListaSimple<Pelicula>();
 		while (it.hasNext()) {
@@ -155,16 +155,16 @@ public class TVBosque {
 			}
 		}
 
-		return listaGenero.darElementos();
+		return listaGenero;
 	}
 
 	public ListaSimple<Pelicula> masCostosos(String[] generos) {
 		ListaSimple<Pelicula> lis = new ListaSimple<>();
 		for (int i = 0; i < generos.length; i++) {
-			Iterator<Pelicula> it2 = buscarPorGenero(generos[i]);
+			Iterator<Pelicula> it2 = buscarPorGenero(generos[i]).darElementos();
 			if(it2.hasNext()) {
 				Pelicula mayor = it2.next();
-				Iterator<Pelicula> it3 = buscarPorGenero(generos[i]);
+				Iterator<Pelicula> it3 = buscarPorGenero(generos[i]).darElementos();
 				while (it3.hasNext()) {
 					Pelicula actual = it3.next();
 					if (mayor.getPrecio() < actual.getPrecio() ) {
@@ -179,7 +179,7 @@ public class TVBosque {
 		return lis;
 	}
 
-	public Iterator<Pelicula> buscarPorTitulo(String titulo) 
+	public ListaSimple<Pelicula> buscarPorTitulo(String titulo) 
 	{
 		Iterator<Pelicula> it = darPeliculas();
 		ListaSimple<Pelicula> listaTitulo = new ListaSimple<Pelicula>();
@@ -192,8 +192,36 @@ public class TVBosque {
 			}
 		}
 
-		return listaTitulo.darElementos();
+		return listaTitulo;
 	} 
+	
+	public ListaSimple<Pelicula> buscarPorClasificacion(String clasificacion)
+	{
+		Iterator<Pelicula> it = darPeliculas();
+		ListaSimple<Pelicula> listaClasificaciones = new ListaSimple<Pelicula>();
+		while (it.hasNext()) {
+			Pelicula actual = it.next();
+			if (actual.getClasificacion().equals(clasificacion)) {
+				listaClasificaciones.agregar(actual);
+			}
+		}
+
+		return listaClasificaciones;
+	}
+	
+	public ListaSimple<Pelicula> buscarPorVersion(String version)
+	{
+		Iterator<Pelicula> it = darPeliculas();
+		ListaSimple<Pelicula> listaVersiones = new ListaSimple<Pelicula>();
+		while (it.hasNext()) {
+			Pelicula actual = it.next();
+			if (actual.getVersion().equals(version)) {
+				listaVersiones.agregar(actual);
+			}
+		}
+
+		return listaVersiones;
+	}
 	
 	
 	public void eliminarPelicula(String titulo) 
@@ -208,6 +236,19 @@ public class TVBosque {
 			}
 		}
 	} 
+	
+	public boolean agregar(String titulo, String estudio, String version, String estado, int precio, String clasificacion,
+			String anio, String genero, String fecha, String ID)
+	{
+		Pelicula nueva = new Pelicula(titulo, estudio, version, estado, precio, clasificacion, anio, genero, fecha, ID);
+		if(this.buscarPorID(ID) == null)
+		{
+			lista.agregar(nueva);
+			return true;
+		}
+		return false;
+	}
+
 
 	/*
 	 * Retorna un iterador con las películas de la tienda
