@@ -12,12 +12,37 @@ import modelo.TVBosque;
 
 public class AdministracionIO {
 
+	//-----------------------------------------------------------------
+    // Atributos
+    //-----------------------------------------------------------------
+
+	/*
+	 * Controlador
+	 */
 	private Controlador c;
 
+	// -----------------------------------------------------------------
+    // Constructores
+    // -----------------------------------------------------------------
+
+	/*
+	 * Crea un nuevo administrador I/O
+	 * <b>post: </b>Inicializa el atributo con el valor dado.
+	 * @param c Controlador del sistema
+	 */
 	public AdministracionIO(Controlador c) {
 		this.c = c;
 	}
 
+	// -----------------------------------------------------------------
+    // Métodos
+    // -----------------------------------------------------------------
+
+	/*
+	 * Carga las películas de un archivo al sistema.
+	 * <b>post: </b>Las películas quedan cargadas en el sistema.
+	 * @throws Exception si ocurre un error con el archivo
+	 */
 	public void cargar() throws Exception {
 		File file = new File("./data/DVD.txt");
 		FileReader fr = new FileReader(file);
@@ -34,6 +59,10 @@ public class AdministracionIO {
 		bf.close();
 	}
 
+	/*
+	 * Guarda los cambios de las películas en su mismo archivo
+	 * @throws Exception si ocurre un error con el archivo
+	 */
 	public void guardar() throws Exception {
 		File file = new File("./data/DVD.txt");
 		PrintWriter pw = new PrintWriter(file);
