@@ -1,22 +1,21 @@
 package modelo;
 
-import java.util.Collection;
 import java.util.Iterator;
-import java.util.LinkedList;
 
+import interfaces.ITVBosque;
 import iterativo.ListaSimple;
 
 /*
- * Representa la tienda de pelÃ­culas
+ * Representa la tienda de películas
  */
-public class TVBosque {
+public class TVBosque implements ITVBosque{
 
 	// -----------------------------------------------------------------
 	// Atributos
 	// -----------------------------------------------------------------
 
 	/*
-	 * Lista Enlazada de pelÃ­culas
+	 * Lista Enlazada de películas
 	 */
 	private ListaSimple<Pelicula> lista;
 
@@ -25,7 +24,7 @@ public class TVBosque {
 	// -----------------------------------------------------------------
 
 	/*
-	 * Crea una nueva tienda de pelÃ­culas. <br> <b>post: </b> Se inicializa la lista
+	 * Crea una nueva tienda de películas. <br> <b>post: </b> Se inicializa la lista
 	 * enlazada.
 	 */
 	public TVBosque() {
@@ -33,33 +32,33 @@ public class TVBosque {
 	}
 
 	// -----------------------------------------------------------------
-	// MÃ©todos
+	// Métodos
 	// -----------------------------------------------------------------
 
 	/*
-	 * Carga todas las pelÃ­culas del archivo en la lista enlazada. <br> <b>post:
-	 * </b>Se guardan todas las pelÃ­culas con sus datos.
+	 * Carga todas las películas del archivo en la lista enlazada. <br> <b>post:
+	 * </b>Se guardan todas las películas con sus datos.
 	 * 
-	 * @param titulo TÃ­tulo de la pelÃ­cula. titulo != null && titulo != "".
+	 * @param titulo Título de la película. titulo != null && titulo != "".
 	 * 
-	 * @param estudio Estudio de la pelÃ­cula. estudio != null && estudio != "".
+	 * @param estudio Estudio de la película. estudio != null && estudio != "".
 	 * 
-	 * @param version VersiÃ³n de la pelÃ­cula. version != null && version != "".
+	 * @param version Versión de la película. version != null && version != "".
 	 * 
-	 * @param estado Estado de la pelÃ­cula. estado != null && estado != "".
+	 * @param estado Estado de la película. estado != null && estado != "".
 	 * 
-	 * @param precio Precio de la pelÃ­cula. precio >= 0.
+	 * @param precio Precio de la película. precio >= 0.
 	 * 
-	 * @param clasificacion ClasificaciÃ³n de la pelÃ­cula. clasificacion != null &&
+	 * @param clasificacion Clasificación de la película. clasificacion != null &&
 	 * clasificacion != "".
 	 * 
-	 * @param anio AÃ±o de la pelÃ­cula. anio != null && anio != "".
+	 * @param anio Año de la película. anio != null && anio != "".
 	 * 
-	 * @param genero GÃ©nero de la pelÃ­cula. genero != null && genero != "".
+	 * @param genero Género de la película. genero != null && genero != "".
 	 * 
-	 * @param fecha Fecha de la pelÃ­cula. fecha != null && genero != "".
+	 * @param fecha Fecha de la película. fecha != null && genero != "".
 	 * 
-	 * @param ID ID de la pelÃ­cula. ID != null && ID != "".
+	 * @param ID ID de la película. ID != null && ID != "".
 	 */
 	public void cargar(String titulo, String estudio, String version, String estado, int precio, String clasificacion,
 			String anio, String genero, String fecha, String ID) {
@@ -69,11 +68,11 @@ public class TVBosque {
 	}
 
 	/*
-	 * Busca una pelÃ­cula segÃºn su ID. <br>
+	 * Busca una película según su ID. <br>
 	 * 
-	 * @param ID ID de la pelÃ­cula. ID != null && ID != "".
+	 * @param ID ID de la película. ID != null && ID != "".
 	 * 
-	 * @return La pelÃ­cula buscada.
+	 * @return La película buscada.
 	 */
 	public Pelicula buscarPorID(String ID) {
 		Iterator<Pelicula> it = darPeliculas();
@@ -89,17 +88,17 @@ public class TVBosque {
 	}
 
 	/*
-	 * Edita una pelÃ­cula segÃºn peticiÃ³n del usuario. <br> <b>post: </b>Se le
-	 * asignan nuevos datos a la pelÃ­cula deseada.
+	 * Edita una película según petición del usuario. <br> <b>post: </b>Se le
+	 * asignan nuevos datos a la película deseada.
 	 * 
-	 * @param ID ID de la pelÃ­cula. ID != null && ID != "".
+	 * @param ID ID de la película. ID != null && ID != "".
 	 * 
-	 * @param editada PelÃ­cula editada por el usuario. editada != null.
+	 * @param editada Película editada por el usuario. editada != null.
 	 */
 	public void editar(String ID, Pelicula editada) throws Exception {
 		Pelicula editar = buscarPorID(ID);
 		if (editar == null) {
-			throw new Exception("No se pudo editar la pelÃ­cula");
+			throw new Exception("No se pudo editar la película");
 		}
 		editar.setAnio(editada.getAnio());
 		editar.setClasificacion(editada.getClasificacion());
@@ -115,14 +114,14 @@ public class TVBosque {
 	}
 
 	/*
-	 * Busca pelÃ­culas segÃºn su perÃ­odo anual de debut y las agrega a una lista
+	 * Busca películas según su período anual de debut y las agrega a una lista
 	 * enlazada. <br>
 	 * 
-	 * @param anio AÃ±o de la pelÃ­cula. anio != null && anio != "".
+	 * @param anio Año de la película. anio != null && anio != "".
 	 * 
-	 * @return Iterador de la lista con las pelÃ­culas buscadas.
+	 * @return Iterador de la lista con las películas buscadas.
 	 * 
-	 * @throws Exception si no se encuentran pelÃ­culas.
+	 * @throws Exception si no se encuentran películas.
 	 */
 	public ListaSimple<Pelicula> buscarPeriodoDebut(String anio) throws Exception {
 		Iterator<Pelicula> it = darPeliculas();
@@ -139,16 +138,16 @@ public class TVBosque {
 		}
 
 		if (agregado == false) {
-			throw new Exception("No se pudo encontrar elementos con ese aÃ±o");
+			throw new Exception("No se pudo encontrar elementos con ese año");
 		}
 
 		return lis;
 	}
 
 	/*
-	 * Retorna la lista de las pelÃ­culas de un gÃ©nero especÃ­fico
+	 * Retorna la lista de las películas de un género específico
 	 * @param genero. genero != null && genero != "".
-	 * @return Lista de las pelÃ­culas de un gÃ©nero especÃ­fico.
+	 * @return Lista de las películas de un género específico.
 	 */
 	public ListaSimple<Pelicula> buscarPorGenero(String genero) {
 		Iterator<Pelicula> it = darPeliculas();
@@ -164,25 +163,25 @@ public class TVBosque {
 	}
 
 	/**
-	 * Devuelve una lista con las pelÃ­culas mÃ¡s costosas, que cumplen por lo menos con un gÃ©nero dado.
+	 * Devuelve una lista con las películas más costosas, que cumplen por lo menos con un género dado.
 	 * @param generos. generos != null.
-	 * @return Lista con las pelÃ­culas mÃ¡s costosas, que cumplen por lo menos con un gÃ©nero dado.
+	 * @return Lista con las películas más costosas, que cumplen por lo menos con un género dado.
 	 */
 	public ListaSimple<Pelicula> masCostosos(String[] generos) {
 		ListaSimple<Pelicula> lis = new ListaSimple<>();
 		for (int i = 0; i < generos.length; i++) {
 			Iterator<Pelicula> it2 = buscarPorGenero(generos[i]).darElementos();
-			if(it2.hasNext()) {
+			if (it2.hasNext()) {
 				Pelicula mayor = it2.next();
 				Iterator<Pelicula> it3 = buscarPorGenero(generos[i]).darElementos();
 				while (it3.hasNext()) {
 					Pelicula actual = it3.next();
-					if (mayor.getPrecio() < actual.getPrecio() ) {
+					if (mayor.getPrecio() < actual.getPrecio()) {
 						mayor = actual;
 					}
 				}
 
-			lis.agregar(mayor);
+				lis.agregar(mayor);
 			}
 		}
 
@@ -193,30 +192,26 @@ public class TVBosque {
 	 * Devuelve una lista de peliculas que tengan el titulo indicado.
 	 * @param titulo. titulo != null && titulo != "".
 	 * @return lista de peliculas que contengan el titulo indicado.
-	 */ 
-	public ListaSimple<Pelicula> buscarPorTitulo(String titulo) 
-	{
+	 */
+	public ListaSimple<Pelicula> buscarPorTitulo(String titulo) {
 		Iterator<Pelicula> it = darPeliculas();
 		ListaSimple<Pelicula> listaTitulo = new ListaSimple<Pelicula>();
-		while (it.hasNext()) 
-		{
+		while (it.hasNext()) {
 			Pelicula actual = it.next();
-			if (actual.getTitulo().contains(titulo)) 
-			{
+			if (actual.getTitulo().contains(titulo)) {
 				listaTitulo.agregar(actual);
 			}
 		}
 
 		return listaTitulo;
-	} 
-	
+	}
+
 	/**
-	 * Muestra la lista de las pelÃ­culas que cumplen una clasificaciÃ³n especÃ­fica.
-	 * @param ClasificaciÃ³n. clasificacion != null && clasificacion != "".
-	 * @return Lista de las pelÃ­culas que cumplen la clasificaciÃ³n dada.
+	 * Muestra la lista de las películas que cumplen una clasificación específica.
+	 * @param Clasificación. clasificacion != null && clasificacion != "".
+	 * @return Lista de las películas que cumplen la clasificación dada.
 	 */
-	public ListaSimple<Pelicula> buscarPorClasificacion(String clasificacion)
-	{
+	public ListaSimple<Pelicula> buscarPorClasificacion(String clasificacion) {
 		Iterator<Pelicula> it = darPeliculas();
 		ListaSimple<Pelicula> listaClasificaciones = new ListaSimple<Pelicula>();
 		while (it.hasNext()) {
@@ -228,14 +223,13 @@ public class TVBosque {
 
 		return listaClasificaciones;
 	}
-	
+
 	/**
-	 * Muestra la lista de las pelÃ­culas que cumplen una versiÃ³n dada.
+	 * Muestra la lista de las películas que cumplen una versión dada.
 	 * @param version. version != null && version != "".
-	 * @return Lista de las pelÃ­culas que cumplen la versiÃ³n dada.
+	 * @return Lista de las películas que cumplen la versión dada.
 	 */
-	public ListaSimple<Pelicula> buscarPorVersion(String version)
-	{
+	public ListaSimple<Pelicula> buscarPorVersion(String version) {
 		Iterator<Pelicula> it = darPeliculas();
 		ListaSimple<Pelicula> listaVersiones = new ListaSimple<Pelicula>();
 		while (it.hasNext()) {
@@ -247,10 +241,10 @@ public class TVBosque {
 
 		return listaVersiones;
 	}
-	
+
 	/*
-	 * Elimina una o varias pelÃ­culas
-	 * @param ID Arreglo con los IDs de las pelÃ­culas a eliminar.
+	 * Elimina una o varias películas
+	 * @param ID Arreglo con los IDs de las películas a eliminar.
 	 */
 	public void eliminarPelicula(String[] ID) {
 		for (int i = 0; i < ID.length; i++) {
@@ -258,9 +252,9 @@ public class TVBosque {
 			lista.eliminado(eliminar);
 		}
 	}
-	
+
 	/*
-	 * Agrega una pelÃ­cula con los parÃ¡metros dados
+	 * Agrega una película con los parámetros dados
 	 * @param titulo. titulo != null && titulo != "".
 	 * @param estudio. estudio != null && estudio != "".
 	 * @param version. version != null && version != "".
@@ -273,23 +267,20 @@ public class TVBosque {
 	 * @param ID. ID != null && ID != "".
 	 * @return valor de verdad de si se realizo la agregacion.
 	 */
-	public boolean agregar(String titulo, String estudio, String version, String estado, int precio, String clasificacion,
-			String anio, String genero, String fecha, String ID)
-	{
+	public boolean agregar(String titulo, String estudio, String version, String estado, int precio,
+			String clasificacion, String anio, String genero, String fecha, String ID) {
 		Pelicula nueva = new Pelicula(titulo, estudio, version, estado, precio, clasificacion, anio, genero, fecha, ID);
-		if(this.buscarPorID(ID) == null)
-		{
+		if (this.buscarPorID(ID) == null) {
 			lista.agregar(nueva);
 			return true;
 		}
 		return false;
 	}
 
-
 	/*
-	 * Retorna un iterador con las pelÃ­culas de la tienda
+	 * Retorna un iterador con las películas de la tienda
 	 * 
-	 * @return Iterador de las pelÃ­culas
+	 * @return Iterador de las películas
 	 */
 	public Iterator<Pelicula> darPeliculas() {
 		return lista.darElementos();
