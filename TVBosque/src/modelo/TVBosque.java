@@ -18,6 +18,18 @@ public class TVBosque {
 
 		lista.agregar(nueva);
 	}
+	
+	public boolean agregar(String titulo, String estudio, String version, String estado, int precio, String clasificacion,
+			String anio, String genero, String fecha, String ID)
+	{
+		Pelicula nueva = new Pelicula(titulo, estudio, version, estado, precio, clasificacion, anio, genero, fecha, ID);
+		if(this.buscarPorID(ID) == null)
+		{
+			lista.agregar(nueva);
+			return true;
+		}
+		return false;
+	}
 
 	public Pelicula buscarPorID(String ID) {
 		Iterator<Pelicula> it = darPeliculas();
