@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import iterativo.ListaSimple;
 
 /*
- * Representa la tienda de pelÌculas
+ * Representa la tienda de pel√≠culas
  */
 public class TVBosque {
 
@@ -16,7 +16,7 @@ public class TVBosque {
 	// -----------------------------------------------------------------
 
 	/*
-	 * Lista Enlazada de pelÌculas
+	 * Lista Enlazada de pel√≠culas
 	 */
 	private ListaSimple<Pelicula> lista;
 
@@ -25,7 +25,7 @@ public class TVBosque {
 	// -----------------------------------------------------------------
 
 	/*
-	 * Crea una nueva tienda de pelÌculas. <br> <b>post: </b> Se inicializa la lista
+	 * Crea una nueva tienda de pel√≠culas. <br> <b>post: </b> Se inicializa la lista
 	 * enlazada.
 	 */
 	public TVBosque() {
@@ -33,33 +33,33 @@ public class TVBosque {
 	}
 
 	// -----------------------------------------------------------------
-	// MÈtodos
+	// M√©todos
 	// -----------------------------------------------------------------
 
 	/*
-	 * Carga todas las pelÌculas del archivo en la lista enlazada. <br> <b>post:
-	 * </b>Se guardan todas las pelÌculas con sus datos.
+	 * Carga todas las pel√≠culas del archivo en la lista enlazada. <br> <b>post:
+	 * </b>Se guardan todas las pel√≠culas con sus datos.
 	 * 
-	 * @param titulo TÌtulo de la pelÌcula. titulo != null && titulo != "".
+	 * @param titulo T√≠tulo de la pel√≠cula. titulo != null && titulo != "".
 	 * 
-	 * @param estudio Estudio de la pelÌcula. estudio != null && estudio != "".
+	 * @param estudio Estudio de la pel√≠cula. estudio != null && estudio != "".
 	 * 
-	 * @param version VersiÛn de la pelÌcula. version != null && version != "".
+	 * @param version Versi√≥n de la pel√≠cula. version != null && version != "".
 	 * 
-	 * @param estado Estado de la pelÌcula. estado != null && estado != "".
+	 * @param estado Estado de la pel√≠cula. estado != null && estado != "".
 	 * 
-	 * @param precio Precio de la pelÌcula. precio >= 0.
+	 * @param precio Precio de la pel√≠cula. precio >= 0.
 	 * 
-	 * @param clasificacion ClasificaciÛn de la pelÌcula. clasificacion != null &&
+	 * @param clasificacion Clasificaci√≥n de la pel√≠cula. clasificacion != null &&
 	 * clasificacion != "".
 	 * 
-	 * @param anio AÒo de la pelÌcula. anio != null && anio != "".
+	 * @param anio A√±o de la pel√≠cula. anio != null && anio != "".
 	 * 
-	 * @param genero GÈnero de la pelÌcula. genero != null && genero != "".
+	 * @param genero G√©nero de la pel√≠cula. genero != null && genero != "".
 	 * 
-	 * @param fecha Fecha de la pelÌcula. fecha != null && genero != "".
+	 * @param fecha Fecha de la pel√≠cula. fecha != null && genero != "".
 	 * 
-	 * @param ID ID de la pelÌcula. ID != null && ID != "".
+	 * @param ID ID de la pel√≠cula. ID != null && ID != "".
 	 */
 	public void cargar(String titulo, String estudio, String version, String estado, int precio, String clasificacion,
 			String anio, String genero, String fecha, String ID) {
@@ -69,11 +69,11 @@ public class TVBosque {
 	}
 
 	/*
-	 * Busca una pelÌcula seg˙n su ID. <br>
+	 * Busca una pel√≠cula seg√∫n su ID. <br>
 	 * 
-	 * @param ID ID de la pelÌcula. ID != null && ID != "".
+	 * @param ID ID de la pel√≠cula. ID != null && ID != "".
 	 * 
-	 * @return La pelÌcula buscada.
+	 * @return La pel√≠cula buscada.
 	 */
 	public Pelicula buscarPorID(String ID) {
 		Iterator<Pelicula> it = darPeliculas();
@@ -89,17 +89,17 @@ public class TVBosque {
 	}
 
 	/*
-	 * Edita una pelÌcula seg˙n peticiÛn del usuario. <br> <b>post: </b>Se le
-	 * asignan nuevos datos a la pelÌcula deseada.
+	 * Edita una pel√≠cula seg√∫n petici√≥n del usuario. <br> <b>post: </b>Se le
+	 * asignan nuevos datos a la pel√≠cula deseada.
 	 * 
-	 * @param ID ID de la pelÌcula. ID != null && ID != "".
+	 * @param ID ID de la pel√≠cula. ID != null && ID != "".
 	 * 
-	 * @param editada PelÌcula editada por el usuario. editada != null.
+	 * @param editada Pel√≠cula editada por el usuario. editada != null.
 	 */
 	public void editar(String ID, Pelicula editada) throws Exception {
 		Pelicula editar = buscarPorID(ID);
 		if (editar == null) {
-			throw new Exception("No se pudo editar la pelÌcula");
+			throw new Exception("No se pudo editar la pel√≠cula");
 		}
 		editar.setAnio(editada.getAnio());
 		editar.setClasificacion(editada.getClasificacion());
@@ -115,14 +115,14 @@ public class TVBosque {
 	}
 
 	/*
-	 * Busca pelÌculas seg˙n su perÌodo anual de debut y las agrega a una lista
+	 * Busca pel√≠culas seg√∫n su per√≠odo anual de debut y las agrega a una lista
 	 * enlazada. <br>
 	 * 
-	 * @param anio AÒo de la pelÌcula. anio != null && anio != "".
+	 * @param anio A√±o de la pel√≠cula. anio != null && anio != "".
 	 * 
-	 * @return Iterador de la lista con las pelÌculas buscadas.
+	 * @return Iterador de la lista con las pel√≠culas buscadas.
 	 * 
-	 * @throws Exception si no se encuentran pelÌculas.
+	 * @throws Exception si no se encuentran pel√≠culas.
 	 */
 	public ListaSimple<Pelicula> buscarPeriodoDebut(String anio) throws Exception {
 		Iterator<Pelicula> it = darPeliculas();
@@ -139,13 +139,17 @@ public class TVBosque {
 		}
 
 		if (agregado == false) {
-			throw new Exception("No se pudo encontrar elementos con ese aÒo");
+			throw new Exception("No se pudo encontrar elementos con ese a√±o");
 		}
 
 		return lis;
 	}
 
-	
+	/*
+	 * Retorna la lista de las pel√≠culas de un g√©nero espec√≠fico
+	 * @param genero. genero != null && genero != "".
+	 * @return Lista de las pel√≠culas de un g√©nero espec√≠fico.
+	 */
 	public ListaSimple<Pelicula> buscarPorGenero(String genero) {
 		Iterator<Pelicula> it = darPeliculas();
 		ListaSimple<Pelicula> listaGenero = new ListaSimple<Pelicula>();
@@ -159,6 +163,11 @@ public class TVBosque {
 		return listaGenero;
 	}
 
+	/**
+	 * Devuelve una lista con las pel√≠culas m√°s costosas, que cumplen por lo menos con un g√©nero dado.
+	 * @param generos. generos != null.
+	 * @return Lista con las pel√≠culas m√°s costosas, que cumplen por lo menos con un g√©nero dado.
+	 */
 	public ListaSimple<Pelicula> masCostosos(String[] generos) {
 		ListaSimple<Pelicula> lis = new ListaSimple<>();
 		for (int i = 0; i < generos.length; i++) {
@@ -196,6 +205,11 @@ public class TVBosque {
 		return listaTitulo;
 	} 
 	
+	/**
+	 * Muestra la lista de las pel√≠culas que cumplen una clasificaci√≥n espec√≠fica.
+	 * @param Clasificaci√≥n. clasificacion != null && clasificacion != "".
+	 * @return Lista de las pel√≠culas que cumplen la clasificaci√≥n dada.
+	 */
 	public ListaSimple<Pelicula> buscarPorClasificacion(String clasificacion)
 	{
 		Iterator<Pelicula> it = darPeliculas();
@@ -210,6 +224,11 @@ public class TVBosque {
 		return listaClasificaciones;
 	}
 	
+	/**
+	 * Muestra la lista de las pel√≠culas que cumplen una versi√≥n dada.
+	 * @param version. version != null && version != "".
+	 * @return Lista de las pel√≠culas que cumplen la versi√≥n dada.
+	 */
 	public ListaSimple<Pelicula> buscarPorVersion(String version)
 	{
 		Iterator<Pelicula> it = darPeliculas();
@@ -238,6 +257,20 @@ public class TVBosque {
 		}
 	} 
 	
+	/*
+	 * Agrega una pel√≠cula con los par√°metros dados
+	 * @param titulo. titulo != null && titulo != "".
+	 * @param estudio. estudio != null && estudio != "".
+	 * @param version. version != null && version != "".
+	 * @param estado. estado != null && estado != "".
+	 * @param precio. precio != 0.
+	 * @param clasificacion. clasificacion != null && clasificacion != "".
+	 * @param anio. anio != null && anio != "".
+	 * @param genero. genero != null && genero != "".
+	 * @param fecha. fecha != null && fecha != "".
+	 * @param ID. ID != null && ID != "".
+	 * @return valor de verdad de si se realizo la agregacion.
+	 */
 	public boolean agregar(String titulo, String estudio, String version, String estado, int precio, String clasificacion,
 			String anio, String genero, String fecha, String ID)
 	{
@@ -252,9 +285,9 @@ public class TVBosque {
 
 
 	/*
-	 * Retorna un iterador con las pelÌculas de la tienda
+	 * Retorna un iterador con las pel√≠culas de la tienda
 	 * 
-	 * @return Iterador de las pelÌculas
+	 * @return Iterador de las pel√≠culas
 	 */
 	public Iterator<Pelicula> darPeliculas() {
 		return lista.darElementos();
