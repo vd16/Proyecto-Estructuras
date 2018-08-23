@@ -179,6 +179,36 @@ public class TVBosque {
 		return lis;
 	}
 
+	public Iterator<Pelicula> buscarPorTitulo(String titulo) 
+	{
+		Iterator<Pelicula> it = darPeliculas();
+		ListaSimple<Pelicula> listaTitulo = new ListaSimple<Pelicula>();
+		while (it.hasNext()) 
+		{
+			Pelicula actual = it.next();
+			if (actual.getTitulo().contains(titulo)) 
+			{
+				listaTitulo.agregar(actual);
+			}
+		}
+
+		return listaTitulo.darElementos();
+	} 
+	
+	
+	public void eliminarPelicula(String titulo) 
+	{
+		Iterator<Pelicula> it = darPeliculas();
+		while (it.hasNext()) 
+		{
+			Pelicula actual = it.next();
+			if (actual.getTitulo().equals(titulo)) 
+			{
+				lista.eliminado(actual);
+			}
+		}
+	} 
+
 	/*
 	 * Retorna un iterador con las películas de la tienda
 	 * 
