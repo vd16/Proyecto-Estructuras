@@ -88,8 +88,8 @@ public class Controlador {
 	 * @return Iterador de la lista con las películas buscadas.
 	 * @throws Exception si no se encuentran películas.
 	 */
-	public Iterator<Pelicula> buscarPeriodoDebut(String anio) {
-		Iterator<Pelicula> it = null;
+	public ListaSimple<Pelicula> buscarPeriodoDebut(String anio) {
+		ListaSimple<Pelicula> it = null;
 		
 		try {
 			it = bosque.buscarPeriodoDebut(anio);
