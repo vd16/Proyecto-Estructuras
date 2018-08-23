@@ -36,7 +36,7 @@ public class TVBosque {
 		boolean editado = false;
 		Pelicula editar = buscarPorID(ID);
 		if (editar == null) {
-			throw new Exception("No se pudo editar la película");
+			throw new Exception("No se pudo editar la pelÃ­cula");
 		}
 		editar.setAnio(editada.getAnio());
 		editar.setClasificacion(editada.getClasificacion());
@@ -65,12 +65,29 @@ public class TVBosque {
 			}
 		}
 		
+		
 		if(agregado == false ) {
-			throw new Exception("No se pudo encontrar elementos con ese año");
+			throw new Exception("No se pudo encontrar elementos con ese aÃ±o");
 		}
 		
 		return lis.darElementos();
 	}
+	
+	public Iterator<Pelicula> buscarPorGenero(String genero) 
+	{
+		Iterator<Pelicula> it = darPeliculas();
+		ListaSimple<Pelicula> listaGenero = new ListaSimple<Pelicula>();
+		while (it.hasNext()) 
+		{
+			Pelicula actual = it.next();
+			if (actual.getGenero().equals(genero)) 
+			{
+				listaGenero.agregar(actual);
+			}
+		}
+
+		return listaGenero.darElementos();
+	} 
 
 	public Iterator<Pelicula> darPeliculas() {
 		return lista.darElementos();
