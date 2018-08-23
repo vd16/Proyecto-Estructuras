@@ -100,6 +100,15 @@ public class Controlador {
 		return it;
 	}
 	
+	public ListaSimple<Pelicula> buscarPorGenero(String genero){
+		return bosque.buscarPorGenero(genero);
+	}
+	
+	public boolean agregar(String titulo, String estudio, String version, String estado, int precio, String clasificacion,
+			String anio, String genero, String fecha, String ID) {
+		return bosque.agregar(titulo, estudio, version, estado, precio, clasificacion, anio, genero, fecha, ID);
+	}
+	
 	/*
 	 * Retorna un iterador con las películas de la tienda
 	 * @return Iterador de las películas
@@ -107,7 +116,25 @@ public class Controlador {
 	public Iterator<Pelicula> darPeliculas() {
 		return bosque.darPeliculas();
 	}
+	/**
+	 * Muestra la lista de las películas que cumplen una versión dada.
+	 * @param version. version != null && version != "".
+	 * @return Lista de las películas que cumplen la versión dada.
+	 */
+	public ListaSimple<Pelicula> buscarPorVersiones(String version){
+		return bosque.buscarPorVersion(version);
+	}
 	
+	/**
+	 * Muestra la lista de las películas que cumplen una clasificación específica.
+	 * @param Clasificación. clasificacion != null && clasificacion != "".
+	 * @return Lista de las películas que cumplen la clasificación dada.
+	 */
+
+	
+	public ListaSimple<Pelicula> buscarPorClasificaciones(String clasificacion){
+		return bosque.buscarPorClasificacion(clasificacion);
+	}
 	/*
 	 * Guarda los cambios de las películas en su mismo archivo
 	 * @throws Exception si ocurre un error con el archivo
@@ -120,6 +147,11 @@ public class Controlador {
 		}
 	}
 	
+	/**
+	 * Devuelve una lista con las películas más costosas, que cumplen por lo menos con un género dado.
+	 * @param generos. generos != null.
+	 * @return Lista con las películas más costosas, que cumplen por lo menos con un género dado.
+	 */
 	public ListaSimple<Pelicula> masCostosos(String[] generos) {
 		return bosque.masCostosos(generos);
 	}
