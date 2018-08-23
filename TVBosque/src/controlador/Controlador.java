@@ -174,6 +174,15 @@ public class Controlador {
 		return bosque.masCostosos(generos);
 	}
 	
+	/*
+	 * Devuelve una lista de peliculas que tengan el titulo indicado.
+	 * @param titulo. titulo != null && titulo != "".
+	 * @return lista de peliculas que contengan el titulo indicado.
+	 */
+	public ListaSimple<Pelicula> buscarPorTitulo(String titulo){
+		return bosque.buscarPorTitulo(titulo);
+	}
+	
 	public static void main(String[] args) {
 		Controlador c = new Controlador();
 	}
