@@ -1,36 +1,80 @@
 package modelo;
 
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 import iterativo.ListaSimple;
 
+/*
+ * Representa la tienda de películas
+ */
 public class TVBosque {
 
+	// -----------------------------------------------------------------
+	// Atributos
+	// -----------------------------------------------------------------
+
+	/*
+	 * Lista Enlazada de películas
+	 */
 	private ListaSimple<Pelicula> lista;
 
+	// -----------------------------------------------------------------
+	// Constructores
+	// -----------------------------------------------------------------
+
+	/*
+	 * Crea una nueva tienda de películas. <br> <b>post: </b> Se inicializa la lista
+	 * enlazada.
+	 */
 	public TVBosque() {
 		lista = new ListaSimple<Pelicula>();
 	}
 
+	// -----------------------------------------------------------------
+	// Métodos
+	// -----------------------------------------------------------------
+
+	/*
+	 * Carga todas las películas del archivo en la lista enlazada. <br> <b>post:
+	 * </b>Se guardan todas las películas con sus datos.
+	 * 
+	 * @param titulo Título de la película. titulo != null && titulo != "".
+	 * 
+	 * @param estudio Estudio de la película. estudio != null && estudio != "".
+	 * 
+	 * @param version Versión de la película. version != null && version != "".
+	 * 
+	 * @param estado Estado de la película. estado != null && estado != "".
+	 * 
+	 * @param precio Precio de la película. precio >= 0.
+	 * 
+	 * @param clasificacion Clasificación de la película. clasificacion != null &&
+	 * clasificacion != "".
+	 * 
+	 * @param anio Año de la película. anio != null && anio != "".
+	 * 
+	 * @param genero Género de la película. genero != null && genero != "".
+	 * 
+	 * @param fecha Fecha de la película. fecha != null && genero != "".
+	 * 
+	 * @param ID ID de la película. ID != null && ID != "".
+	 */
 	public void cargar(String titulo, String estudio, String version, String estado, int precio, String clasificacion,
 			String anio, String genero, String fecha, String ID) {
 		Pelicula nueva = new Pelicula(titulo, estudio, version, estado, precio, clasificacion, anio, genero, fecha, ID);
 
 		lista.agregar(nueva);
 	}
-	
-	public boolean agregar(String titulo, String estudio, String version, String estado, int precio, String clasificacion,
-			String anio, String genero, String fecha, String ID)
-	{
-		Pelicula nueva = new Pelicula(titulo, estudio, version, estado, precio, clasificacion, anio, genero, fecha, ID);
-		if(this.buscarPorID(ID) == null)
-		{
-			lista.agregar(nueva);
-			return true;
-		}
-		return false;
-	}
 
+	/*
+	 * Busca una película según su ID. <br>
+	 * 
+	 * @param ID ID de la película. ID != null && ID != "".
+	 * 
+	 * @return La película buscada.
+	 */
 	public Pelicula buscarPorID(String ID) {
 		Iterator<Pelicula> it = darPeliculas();
 		Pelicula buscada = null;
@@ -44,11 +88,18 @@ public class TVBosque {
 		return buscada;
 	}
 
+	/*
+	 * Edita una película según petición del usuario. <br> <b>post: </b>Se le
+	 * asignan nuevos datos a la película deseada.
+	 * 
+	 * @param ID ID de la película. ID != null && ID != "".
+	 * 
+	 * @param editada Película editada por el usuario. editada != null.
+	 */
 	public void editar(String ID, Pelicula editada) throws Exception {
-		boolean editado = false;
 		Pelicula editar = buscarPorID(ID);
 		if (editar == null) {
-			throw new Exception("No se pudo editar la pelÃ­cula");
+			throw new Exception("No se pudo editar la película");
 		}
 		editar.setAnio(editada.getAnio());
 		editar.setClasificacion(editada.getClasificacion());
@@ -62,74 +113,77 @@ public class TVBosque {
 
 		System.out.println(editar.getTitulo());
 	}
-	
-	public Iterator<Pelicula> buscarPeriodoDebut(String anio) throws Exception{
+
+	/*
+	 * Busca películas según su período anual de debut y las agrega a una lista
+	 * enlazada. <br>
+	 * 
+	 * @param anio Año de la película. anio != null && anio != "".
+	 * 
+	 * @return Iterador de la lista con las películas buscadas.
+	 * 
+	 * @throws Exception si no se encuentran películas.
+	 */
+	public Iterator<Pelicula> buscarPeriodoDebut(String anio) throws Exception {
 		Iterator<Pelicula> it = darPeliculas();
 		ListaSimple<Pelicula> lis = new ListaSimple<>();
 		boolean agregado = false;
-		
-		while(it.hasNext()) {
+
+		while (it.hasNext()) {
 			Pelicula actual = it.next();
-			
-			if(actual.getAnio().equals(anio)) {
+
+			if (actual.getAnio().equals(anio)) {
 				lis.agregar(actual);
 				agregado = true;
 			}
 		}
-		
-		
-		if(agregado == false ) {
-			throw new Exception("No se pudo encontrar elementos con ese aÃ±o");
-		}
-		
-		return lis.darElementos();
-	}
-	
-	public Iterator<Pelicula> buscarPorTitulo(String titulo) 
-	{
-		Iterator<Pelicula> it = darPeliculas();
-		ListaSimple<Pelicula> listaTitulo = new ListaSimple<Pelicula>();
-		while (it.hasNext()) 
-		{
-			Pelicula actual = it.next();
-			if (actual.getTitulo().contains(titulo)) 
-			{
-				listaTitulo.agregar(actual);
-			}
+
+		if (agregado == false) {
+			throw new Exception("No se pudo encontrar elementos con ese año");
 		}
 
-		return listaTitulo.darElementos();
-	} 
-	
-	public Iterator<Pelicula> buscarPorGenero(String genero) 
-	{
+		return lis.darElementos();
+	}
+
+	public Iterator<Pelicula> buscarPorGenero(String genero) {
 		Iterator<Pelicula> it = darPeliculas();
 		ListaSimple<Pelicula> listaGenero = new ListaSimple<Pelicula>();
-		while (it.hasNext()) 
-		{
+		while (it.hasNext()) {
 			Pelicula actual = it.next();
-			if (actual.getGenero().equals(genero)) 
-			{
+			if (actual.getGenero().equals(genero)) {
 				listaGenero.agregar(actual);
 			}
 		}
 
 		return listaGenero.darElementos();
-	} 
-	
-	public void eliminarPelicula(String titulo) 
-	{
-		Iterator<Pelicula> it = darPeliculas();
-		while (it.hasNext()) 
-		{
-			Pelicula actual = it.next();
-			if (actual.getTitulo().equals(titulo)) 
-			{
-				lista.eliminar(actual);
+	}
+
+	public ListaSimple<Pelicula> masCostosos(String[] generos) {
+		ListaSimple<Pelicula> lis = new ListaSimple<>();
+		for (int i = 0; i < generos.length; i++) {
+			Iterator<Pelicula> it2 = buscarPorGenero(generos[i]);
+			if(it2.hasNext()) {
+				Pelicula mayor = it2.next();
+				Iterator<Pelicula> it3 = buscarPorGenero(generos[i]);
+				while (it3.hasNext()) {
+					Pelicula actual = it3.next();
+					if (mayor.getPrecio() < actual.getPrecio() ) {
+						mayor = actual;
+					}
+				}
+
+			lis.agregar(mayor);
 			}
 		}
-	} 
 
+		return lis;
+	}
+
+	/*
+	 * Retorna un iterador con las películas de la tienda
+	 * 
+	 * @return Iterador de las películas
+	 */
 	public Iterator<Pelicula> darPeliculas() {
 		return lista.darElementos();
 	}
